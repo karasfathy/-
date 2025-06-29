@@ -121,10 +121,35 @@
 <form action="https://formspree.io/f/xyzabcde
 " method="POST" class="flex flex-col space-y-2">
   <input type="text" name="name" placeholder="اسمك" required class="px-4 py-2 rounded text-black">
-  <input type="email" name="email" placeholder="بريدك الإلكتروني" required class="px-4 py-2 rounded text-black">
+  <input type="email" name="email" placeholder="farhykaras554422@gmal.com" required class="px-4 py-2 rounded text-black">
   <textarea name="message" placeholder="رسالتك..." required class="px-4 py-2 rounded text-black"></textarea>
   <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">📨 إرسال</button>
 </form>
+<script>
+  const form = document.getElementById("contactForm");
+  const successMsg = document.getElementById("successMsg");
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault(); // منع الإرسال الافتراضي
+
+    const formData = new FormData(form);
+
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      form.reset(); // يمسح الحقول
+      successMsg.classList.remove("hidden"); // يظهر رسالة النجاح
+    } else {
+      alert("حدث خطأ أثناء إرسال الرسالة، حاول مرة أخرى.");
+    }
+  });
+</script>
 
 </body>
 </html>
