@@ -10,6 +10,16 @@
   <title>تحميل الفيديوهات من كل المنصات</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+
+    :root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+}
+[data-theme="dark"] {
+  --bg-color: #0f172a;
+  --text-color: #ffffff;
+}
+
     body {
       background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1, #fbc2eb, #a6c1ee, #84fab0, #8fd3f4, #a1c4fd, #c2e9fb, #d4fc79, #96e6a1);
       background-size: 5000% 5000%;
@@ -22,8 +32,23 @@
       100% {background-position: 0% 50%;}
     }
   </style>
+<script>
+  function toggleTheme() {
+    const body = document.body;
+    const theme = body.getAttribute("data-theme") === "light" ? "dark" : "light";
+    body.setAttribute("data-theme", theme);
+  }
+</script>
+
+  
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center text-white text-center p-4">
+<body data-theme="light" class="min-h-screen flex flex-col items-center justify-center text-white text-center p-4">
+<div class="absolute top-4 right-4">
+  <button onclick="toggleTheme()" class="bg-black text-white px-4 py-2 rounded-full shadow">
+    🌗 وضع ليلي/نهاري
+  </button>
+</div>
+
 
   <h1 class="text-4xl font-bold mb-6 drop-shadow-lg">📥 تحميل أي فيديو من أي منصة</h1>
   <p class="mb-6 text-lg max-w-xl">ضع رابط الفيديو من يوتيوب، تيك توك، فيسبوك، إنستغرام أو تيليجرام وسنوجهك لأفضل طريقة تحميل بدون لوجو.</p>
@@ -35,7 +60,24 @@
     class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-3 rounded-full shadow-xl transition duration-300">
     🚀 ابدأ التحميل
   </button>
+<div class="mt-10 w-full max-w-3xl text-white text-center">
+  <h2 class="text-2xl font-bold mb-4">🎵 مكتبة نغمات مجانية</h2>
+  <ul class="space-y-2">
+    <li><a href="sounds/ringtone1.mp3" download class="underline hover:text-yellow-300">🔊 نغمة 1</a></li>
+    <li><a href="sounds/ringtone2.mp3" download class="underline hover:text-yellow-300">🔊 نغمة 2</a></li>
+    <li><a href="sounds/ringtone3.mp3" download class="underline hover:text-yellow-300">🔊 نغمة 3</a></li>
+  </ul>
+</div>
+<div class="mt-10 w-full max-w-3xl text-white text-center">
+  <h2 class="text-2xl font-bold mb-4">📚 مقالات مفيدة</h2>
+  <ul class="space-y-2">
+    <li><a href="#" class="underline hover:text-yellow-300">💡 كيف تحمل من تيك توك بدون علامة مائية؟</a></li>
+    <li><a href="#" class="underline hover:text-yellow-300">🎬 أفضل تطبيقات مونتاج فيديو للموبايل</a></li>
+    <li><a href="#" class="underline hover:text-yellow-300">🧠 كيف تبدأ قناة يوتيوب ناجحة؟</a></li>
+  </ul>
+</div>
 
+  
   <script>
     function redirect() {
       const url = document.getElementById("url").value.trim();
@@ -61,7 +103,21 @@
       const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
       return match ? match[1] : "";
     }
+    function sendMessage(e) {
+  e.preventDefault();
+  const name = document.getElementById("name").value;
+  alert("شكرًا لك يا " + name + "! تم إرسال رسالتك بنجاح.");
+}
+
   </script>
+<div class="mt-10 w-full max-w-2xl">
+  <h2 class="text-xl font-bold mb-2 text-white">💬 تواصل معنا</h2>
+  <form onsubmit="sendMessage(event)" class="flex flex-col space-y-2">
+    <input type="text" id="name" placeholder="اسمك" class="px-4 py-2 rounded text-black">
+    <textarea id="message" placeholder="رسالتك..." class="px-4 py-2 rounded text-black"></textarea>
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">📨 إرسال</button>
+  </form>
+</div>
 
 </body>
 </html>
