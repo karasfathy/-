@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تحميل الفيديوهات من كل المنصات</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fad0c4, #ffdde1, #fbc2eb, #a6c1ee, #84fab0, #8fd3f4, #a1c4fd, #c2e9fb, #d4fc79, #96e6a1);
+      background-size: 5000% 5000%;
+      animation: rainbow 40s ease infinite;
+    }
+
+    @keyframes rainbow {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center text-white text-center p-4">
+
+  <h1 class="text-4xl font-bold mb-6 drop-shadow-lg">📥 تحميل أي فيديو من أي منصة</h1>
+  <p class="mb-6 text-lg max-w-xl">ضع رابط الفيديو من يوتيوب، تيك توك، فيسبوك، إنستغرام أو تيليجرام وسنوجهك لأفضل طريقة تحميل بدون لوجو.</p>
+
+  <input type="text" id="url" placeholder="أدخل رابط الفيديو هنا..."
+    class="w-full max-w-xl px-4 py-3 rounded-xl text-black text-lg shadow-lg outline-none mb-4">
+
+  <button onclick="redirect()"
+    class="bg-yellow-400 hover:bg-yellow-500 text-black font-bold px-6 py-3 rounded-full shadow-xl transition duration-300">
+    🚀 ابدأ التحميل
+  </button>
+
+  <script>
+    function redirect() {
+      const url = document.getElementById("url").value.trim();
+      if (!url) return alert("من فضلك أدخل رابط الفيديو.");
+
+      if (url.includes("youtube.com") || url.includes("youtu.be")) {
+        const id = extractYouTubeID(url);
+        window.open("https://ssyoutube.com/watch?v=" + id, "_blank");
+      } else if (url.includes("tiktok.com")) {
+        window.open("https://snaptik.app/", "_blank");
+      } else if (url.includes("instagram.com")) {
+        window.open("https://igram.io", "_blank");
+      } else if (url.includes("facebook.com")) {
+        window.open("https://fdown.net", "_blank");
+      } else if (url.includes("t.me")) {
+        alert("افتح الرابط مباشرة في تيليجرام واضغط على الفيديو لتنزيله.");
+      } else {
+        alert("عذرًا، المنصة غير مدعومة حاليًا. جرب رابط آخر.");
+      }
+    }
+
+    function extractYouTubeID(url) {
+      const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+      return match ? match[1] : "";
+    }
+  </script>
+
+</body>
+</html>
