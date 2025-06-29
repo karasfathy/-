@@ -119,23 +119,16 @@
 
  <script>
   const form = document.getElementById("contactForm");
-  const successMsg = document.getElementById("successMsg");
 
   form.addEventListener("submit", function (e) {
-    e.preventDefault();
+    e.preventDefault(); // يمنع الإرسال العادي
 
-    // مسح الحقول
-    form.reset();
+    form.reset(); // يمسح الحقول
 
-    // إظهار رسالة النجاح دائمًا
-    successMsg.classList.remove("hidden");
-
-    // إخفاء الرسالة بعد 5 ثواني (اختياري)
-    setTimeout(() => {
-      successMsg.classList.add("hidden");
-    }, 5000);
+    alert("✅ تم إرسال الرسالة بنجاح!"); // يظهر التنبيه
   });
 </script>
+
 
 
 
